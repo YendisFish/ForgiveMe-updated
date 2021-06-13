@@ -9,6 +9,13 @@ namespace testtestgo
 {
     class Program
     {
+        public static void creatDir(String dirName, String userName) 
+        {
+            Console.WriteLine($@"Creating directory {dirName} [Path {userName}\{dirName}]");
+            Directory.CreateDirectory($@"{userName}\{dirName}");
+            Console.WriteLine("Directory Created!");
+        }
+        
         public static void createFile(String fileName, String userName) 
         {
             Console.WriteLine("Creating " + fileName);
@@ -277,6 +284,20 @@ namespace testtestgo
                             } else 
                             {
                                 createFile(fileName, uName);
+                            }
+                        }
+                        if (userInput == "create-dir")
+                        {
+                            Console.Write("What is the name of the directory you are trying to create? > ");
+                            String dirName = Console.ReadLine();
+
+                            if (File.Exists($@"{uName}\{dirName}"))
+                            {
+                                Console.WriteLine("Directory already exists! Please try again!");
+                                continue;
+                            } else 
+                            {
+                                creatDir(dirName, uName);
                             }
                         }
                     } else

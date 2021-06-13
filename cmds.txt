@@ -1,1 +1,1 @@
-new, del, read, query, create, exit
+new, del, read, query, create, create-dir, exit
