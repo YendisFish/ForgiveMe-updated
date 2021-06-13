@@ -9,6 +9,13 @@ namespace testtestgo
 {
     class Program
     {
+        public static void createFile(String fileName, String userName) 
+        {
+            Console.WriteLine("Creating " + fileName);
+            var fs = File.Create($@"{userName}\{fileName}");
+            fs.Close();
+        }
+
         public static String readFile(String fileName, String userName)
         {
             Console.WriteLine("Reading " + $@"{userName}\{fileName}");
@@ -57,6 +64,9 @@ namespace testtestgo
         
         public static void Main(String[]args)
         {
+            Console.WriteLine("Welcome to ForgiveMe");
+            Console.WriteLine();
+            
             DateTime current = DateTime.Now;
             bool init = true;
             int passAttempt;
@@ -254,6 +264,20 @@ namespace testtestgo
                         if (userInput == "exit")
                         {
                             System.Environment.Exit(1);
+                        }
+                        if (userInput == "create") 
+                        {
+                            Console.Write("What would you like to name this file? > ");
+                            String fileName = Console.ReadLine();
+
+                            if (File.Exists($@"{uName}\{fileName}")) 
+                            {
+                                Console.WriteLine("This file already exists! Please choose a different name!");
+                                continue;
+                            } else 
+                            {
+                                createFile(fileName, uName);
+                            }
                         }
                     } else
                     {
